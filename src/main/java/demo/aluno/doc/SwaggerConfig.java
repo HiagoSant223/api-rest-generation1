@@ -35,11 +35,15 @@ public class SwaggerConfig {
     }
 
     @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
+    public Docket detalheApi() {
+        Docket docket = new Docket(DocumentationType.SWAGGER_2);
+
+        docket
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("demo.aluno.controller"))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .apiInfo(this.informacoesApi().build());
+        return docket;
     }
 }
